@@ -48,29 +48,28 @@ python drive.py model.h5
 
 ####3. Submssion code is usable and readable
 
-The model.py file contains the code for training and saving the convolution neural network. The file shows the pipeline I used for training and validating the model, and it contains comments to explain how the code works.
+The model.py file contains the code for training and saving the convolution neural network. The file shows the steps of the implementation of the model, in order.
 
 ###Model Architecture and Training Strategy
 
 ####1. An appropriate model arcthiecture has been employed
 
-My model consists of five convolutional layers, each followed by an activation ELU layer.  These are used to extract features from the images.  The first four convolutional filters are 5x5 and the last one is 3x3.  The layers increase in depth, starting at 3 and ending at 64.
+My model consists of five convolutional layers, each followed by an activation ELU layer.  These are used to extract features from the images.  The first four convolutional filters are 5x5 and the last one is 3x3.  The layers increase in depth, starting at 12 and ending at 64.
 These are followed by a flatten layer and four fully connected (dense) layers.  The purpose of these is to train the model to map the extracted features to outputs.  
 
 ####2. Attempts to reduce overfitting in the model
 
-The model contains two dropout layers in order to reduce overfitting.  The first one happens after _________ and the second one happens before the last fully connected layer.
-
-CHANGE THIS:
-The model was trained and validated on different data sets to ensure that the model was not overfitting (code line 10-16). The model was tested by running it through the simulator and ensuring that the vehicle could stay on the track.
+The model contains two dropout layers in order to reduce overfitting.  The first one happens after ______the Flatten layer and the second one happens before the last fully connected layer.
+The data used for training the model is shuffled every time before training so it does not have a dependency on the order of the input.
 
 ####3. Model parameter tuning
 
-The model used an adam optimizer and mse (mean squared error).
+The model used an adam optimizer and mse (mean squared error), which means the learning rate was not set manually.
 
 ####4. Appropriate training data
 
 Training data used was provided by Udacity.  It included three camera angles - center, left and right.
+I've augmented the training data by adding some of my own.  I added some data for just general driving around the track and some extra data for particularly difficult areas, like sharp turns.
 
 ###Model Architecture and Training Strategy
 
@@ -80,10 +79,7 @@ The overall strategy for deriving a model architecture was to pick an existing k
 
 My first step was to use a convolutional neural network model similar to the Nvidia pipeline.   I thought this model might be appropriate because it had a good number of convolutional layers, which I thought would give the model enough opportunities to extract important features.
 
-CHANG THIS:
-To combat the overfitting, I added a couple dropout layers to the model.
-
-Then I ...
+Then I added a couple of droupout layers to the model in order to prevent overfitting.
 
 After my first semi-successful training of a model, I tried to run it in the simulator.  The vehicle turned left and into the lake.  
 
@@ -99,12 +95,17 @@ My next step was to add recovery data, since the vehicle didn't seem to know how
 I used the left and right camera images from the Udacity data and added an offset to the steering angles and added all of that to my training set.
 This showed a slight improvement, but the vehicle would still crash shortly after the first bridge.
 
-Then I realized another problem could be that since the behicle mostly drives straight, it can be biased to drive straight most of the time.  This matched my observations in the simulator, since the vehicle was reluctant to turn and would only turn sharply when it was close to the side of the road.
+Then I realized another problem could be that since the vehicle mostly drives straight, it can be biased to drive straight most of the time.  This matched my observations in the simulator, since the vehicle was reluctant to turn and would only turn sharply when it was close to the side of the road.
 To fix this, I removed the data with steering angle of 0 from the training set.  I set a threshold to be 0.001 to account for rounding errors.
 
-This got me a point where I could drive the entire loot twice (at least, probably more) without crashing.
-At this point, the model is still not perfect and swerves a lot, occasionally hitting the sides of the road.  It doesn't handle bridges very well and sticks to the side of the bridge for a long time.
-However, it has recovered successfully every time so far. 
+This got me a point where I could drive the entire loop twice (at least, probably more) without crashing.
+At this point, the model was still not perfect and swerved a lot, occasionally hitting the sides of the road.  It didn't handle bridges very well and stuck to the side of the bridge for a long time.
+However, it has recovered successfully every time.
+
+In order to improve that and avoid driving up on the edges of the road, I recorded some of my own data so I would have more data to train the model on.
+Additional training has improved the model's ability to drive over the bridge and to handle turns.  I also experimented with different thresholds for removing zero steering values and correction angles using side cameras.
+I noticed the model did slightly better with a larger number of epochs (around 7 seemed to be a good number for me).
+This got the vehicle to drive around the track without getting stuck on the bridge or going off on the sides.  However, the car still looks drunk and swerves a lot. 
 
 
 ####2. Final Model Architecture
