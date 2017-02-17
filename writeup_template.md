@@ -110,27 +110,43 @@ This got the vehicle to drive around the track without getting stuck on the brid
 
 ####2. Final Model Architecture
 
-The final model architecture consists of a convolution neural network with the following layers and layer sizes ...
+The final model architecture consists of a convolution neural network with the following layers and layer sizes:
 
-OPTIONAL:
-Here is a visualization of the architecture (note: visualizing the architecture is optional according to the project rubric)
+Input
+Convolutional layer: 12  5x5 filters, stride of 4
+ELU Activation
+Convolutional layer: 24 5x5 filters, stride of 2
+ELU Activation
+Convolutional layer: 36 5x5 filters, stride of 2
+ELU Activation
+Convolutional layer: 48 5x5 filters, stride of 2
+ELU Activation
+Max Pooling: pool size 2x2
+Convolutional layer: 64 3x3 filters, stride of 2
+ELU Activation
+Flatten
+Dropout: drops 20% of input units
+ELU Activation
+Fully Connected
+ELU Activation
+Fully Connected
+ELU Activation
+Fully Connected
+Dropout: drops 50% of input units
+ELU Activation
+Fully Connected
 
-![alt text][image1]
 
 ####3. Creation of the Training Set & Training Process
 
-I tried the drive the track on my own at first, but didn't do a very good job and would end up hitting the sides occasionally.  I have read in discussions that people had a hard time driving it with a keyboard because the steering angles end up beeing too extreme.
+I tried to drive the track on my own at first, but didn't do a very good job and would end up hitting the sides occasionally.  I have read in discussions that people had a hard time driving it with a keyboard because the steering angles end up beeing too extreme.
 I decided to go with the Udacity provided data for now, assuming that if I need more data, I will try driving with a controller.
 
 I took the Udacity provided images and converted them from BGR to RGB.  I cropped them to include only the important parts that show the curvature of the road.  I then flipped all of the center images and added them to my training set.
 Then I took the left and right camera images and added them to the data set with properly adjusted steering angles.  I ended up adjusting them by .13.
 I normalized the image data as a preprocessing step, so the would range between -1 and 1.
 
-CHANGE THIS:
+After the collection process, I had 25912 of data points. By the time I removed zero steering angles, I had 20659 data points (this number varies since I use a random number to determine how many zero values to keep).
 
-After the collection process, I had X number of data points. I then preprocessed this data by ...
+The data is randomly shuffled and 20% of is us used for validation, which in this case came out to 5165.
 
-
-I finally randomly shuffled the data set and put Y% of the data into a validation set. 
-
-I used this training data for training the model. The validation set helped determine if the model was over or under fitting. The ideal number of epochs was Z as evidenced by ... I used an adam optimizer so that manually training the learning rate wasn't necessary.
