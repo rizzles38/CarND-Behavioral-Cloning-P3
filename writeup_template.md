@@ -59,9 +59,7 @@ These are followed by a flatten layer and four fully connected (dense) layers.  
 
 ####2. Attempts to reduce overfitting in the model
 
-The model contains two dropout layers in order to reduce overfitting.  The first one happens after ______the Flatten layer and the second one happens before the last fully connected layer.
-The data used for training the model is shuffled every time before training so it does not have a dependency on the order of the input.
-
+The model contains two dropout layers in order to reduce overfitting.  The first one happens after the Flatten layer and the second one happens before the last fully connected layer.  
 ####3. Model parameter tuning
 
 The model used an adam optimizer and mse (mean squared error), which means the learning rate was not set manually.
