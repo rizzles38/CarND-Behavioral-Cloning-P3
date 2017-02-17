@@ -110,29 +110,29 @@ This got the vehicle to drive around the track without getting stuck on the brid
 
 The final model architecture consists of a convolution neural network with the following layers and layer sizes:
 
-Input
-Convolutional layer: 12  5x5 filters, stride of 4
-ELU Activation
-Convolutional layer: 24 5x5 filters, stride of 2
-ELU Activation
-Convolutional layer: 36 5x5 filters, stride of 2
-ELU Activation
+Input  
+Convolutional layer: 12  5x5 filters, stride of 4  
+ELU Activation  
+Convolutional layer: 24 5x5 filters, stride of 2  
+ELU Activation  
+Convolutional layer: 36 5x5 filters, stride of 2  
+ELU Activation  
 Convolutional layer: 48 5x5 filters, stride of 2
-ELU Activation
-Max Pooling: pool size 2x2
-Convolutional layer: 64 3x3 filters, stride of 2
-ELU Activation
-Flatten
-Dropout: drops 20% of input units
-ELU Activation
-Fully Connected
-ELU Activation
-Fully Connected
-ELU Activation
-Fully Connected
-Dropout: drops 50% of input units
-ELU Activation
-Fully Connected
+ELU Activation  
+Max Pooling: pool size 2x2  
+Convolutional layer: 64 3x3 filters, stride of 2  
+ELU Activation  
+Flatten  
+Dropout: drops 20% of input units  
+ELU Activation  
+Fully Connected  
+ELU Activation  
+Fully Connected  
+ELU Activation  
+Fully Connected  
+Dropout: drops 50% of input units  
+ELU Activation  
+Fully Connected  
 
 
 ####3. Creation of the Training Set & Training Process
